@@ -13,7 +13,8 @@ public class TradingApp {
 	}
 
 	public void start() {
-		Trader trader = new Trader(new StockAPIService("https://financialmodelingprep.com/api/v3/stock/real-time-price/%s"));
+		Logger logger = new Logger();
+		Trader trader = new Trader(new StockAPIService("https://financialmodelingprep.com/api/v3/stock/real-time-price/%s"),logger);
 		Scanner keyboard = new Scanner(System.in);
 		System.out.println("Enter a stock symbol (for example aapl):");
 		String symbol = keyboard.nextLine();
@@ -29,13 +30,13 @@ public class TradingApp {
 		try {
 			boolean purchased = trader.buy(symbol, price);
 			if (purchased) {
-				Logger.getInstance().log("Purchased stock!");
+				logger.log("Purchased stock!");
 			}
 			else {
-				Logger.getInstance().log("Couldn't buy the stock at that price.");
+				logger.log("Couldn't buy the stock at that price.");
 			}
 		} catch (Exception e) {
-			Logger.getInstance().log("There was an error while attempting to buy the stock: " + e.getMessage());
+			logger.log("There was an error while attempting to buy the stock: " + e.getMessage());
 		}
 	}
 }
