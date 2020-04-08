@@ -5,15 +5,21 @@ import org.json.JSONObject;
 import java.io.IOException;
 
 /**
+ * "https://financialmodelingprep.com/api/v3/stock/real-time-price/%s";
  * Stock price service that gets prices from Yahoo.
  **/
 public class StockAPIService {
 
-	private static final String apiPath = "https://financialmodelingprep.com/api/v3/stock/real-time-price/%s";
+	private String apiPath;
 	
 	/** Get stock price from iex and return as a double
      *  @param symbol Stock symbol, for example "aapl"
      **/
+
+	public StockAPIService(String url){
+		this.apiPath = url;
+
+	}
 	public double getPrice(String symbol) throws IOException {
         String url = String.format(apiPath, symbol);
         String result = RemoteURLReader.readFromUrl(url);

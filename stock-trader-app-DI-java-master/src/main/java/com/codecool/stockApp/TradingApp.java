@@ -13,6 +13,7 @@ public class TradingApp {
 	}
 
 	public void start() {
+		Trader trader = new Trader(new StockAPIService("https://financialmodelingprep.com/api/v3/stock/real-time-price/%s"));
 		Scanner keyboard = new Scanner(System.in);
 		System.out.println("Enter a stock symbol (for example aapl):");
 		String symbol = keyboard.nextLine();
@@ -26,7 +27,7 @@ public class TradingApp {
 		}
 
 		try {
-			boolean purchased = Trader.getInstance().buy(symbol, price);
+			boolean purchased = trader.buy(symbol, price);
 			if (purchased) {
 				Logger.getInstance().log("Purchased stock!");
 			}

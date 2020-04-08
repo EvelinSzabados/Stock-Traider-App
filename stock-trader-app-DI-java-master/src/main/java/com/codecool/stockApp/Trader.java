@@ -6,20 +6,20 @@ import java.io.IOException;
  * Business logic for stock trading
  **/
 public class Trader {
-
-	private static Trader instance;
-
-	public static Trader getInstance() {
-	    if (instance == null) {
-	        instance = new Trader();
-        }
-        return instance;
-    }
+//
+//	private static Trader instance;
+//
+//	public static Trader getInstance() {
+//	    if (instance == null) {
+//	        instance = new Trader();
+//        }
+//        return instance;
+//    }
 
 	private StockAPIService stockService;
 
-	public Trader() {
-        this.stockService = new StockAPIService();
+	public Trader(StockAPIService stockService) {
+        this.stockService = stockService;
     }
 
 	/** Checks the price of a stock, and buys it if the price is not greater than the bid amount.
