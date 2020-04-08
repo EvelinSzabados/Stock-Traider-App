@@ -7,17 +7,18 @@ import java.util.Scanner;
  * Provides a command line interface for stock trading.
  **/
 public class TradingApp {
-	public static void main(String[] args) {
-	    TradingApp app = new TradingApp();
-	    app.start();
-	}
 
-	public void start() {
+	public static void main(String[] args) {
 		Logger logger = new Logger();
 		String url = "https://financialmodelingprep.com/api/v3/stock/real-time-price/%s";
 		StockAPIService stockApi = new StockAPIService(url,new RemoteURLReader());
 		Trader trader = new Trader(stockApi,logger);
-		
+	    TradingApp app = new TradingApp();
+	    app.start(logger,trader);
+	}
+
+	public void start(Logger logger, Trader trader) {
+
 		Scanner keyboard = new Scanner(System.in);
 		System.out.println("Enter a stock symbol (for example aapl):");
 		String symbol = keyboard.nextLine();
