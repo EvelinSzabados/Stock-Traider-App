@@ -11,7 +11,7 @@ import java.io.IOException;
 public class StockAPIService {
 
 	private String apiPath;
-	RemoteURLReader remoteURLReader;
+	private RemoteURLReader remoteURLReader;
 	
 	/** Get stock price from iex and return as a double
      *  @param symbol Stock symbol, for example "aapl"
