@@ -14,8 +14,10 @@ public class TradingApp {
 
 	public void start() {
 		Logger logger = new Logger();
-		StockAPIService stockApi = new StockAPIService("https://financialmodelingprep.com/api/v3/stock/real-time-price/%s",new RemoteURLReader());
+		String url = "https://financialmodelingprep.com/api/v3/stock/real-time-price/%s";
+		StockAPIService stockApi = new StockAPIService(url,new RemoteURLReader());
 		Trader trader = new Trader(stockApi,logger);
+		
 		Scanner keyboard = new Scanner(System.in);
 		System.out.println("Enter a stock symbol (for example aapl):");
 		String symbol = keyboard.nextLine();
