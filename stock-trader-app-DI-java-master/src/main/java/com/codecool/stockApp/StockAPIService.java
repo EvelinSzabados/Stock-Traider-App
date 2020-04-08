@@ -11,18 +11,20 @@ import java.io.IOException;
 public class StockAPIService {
 
 	private String apiPath;
+	RemoteURLReader remoteURLReader;
 	
 	/** Get stock price from iex and return as a double
      *  @param symbol Stock symbol, for example "aapl"
      **/
 
-	public StockAPIService(String url){
+	public StockAPIService(String url,RemoteURLReader reader){
 		this.apiPath = url;
+		this.remoteURLReader = reader;
 
 	}
 	public double getPrice(String symbol) throws IOException {
         String url = String.format(apiPath, symbol);
-        String result = RemoteURLReader.readFromUrl(url);
+        String result = remoteURLReader.readFromUrl(url);
         JSONObject json = new JSONObject(result);
         String price = json.get("price").toString();
         return Double.parseDouble(price);
